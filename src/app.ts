@@ -22,12 +22,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 //Global error handleing
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = error.statusCode || 500;
-  let message = error.message || "Something went wrong";
-
-  res.status(statusCode).json({
+  let message = error.message || "Internal Server Error";
+  if (error) {
+    res.status(statusCode).json({
+      success: false,
+      message: message,
+      error,
+    });
+    return;
+  }
+  res.status(500).json({
     success: false,
     message: message,
-    error,
   });
 });
 export default app;
