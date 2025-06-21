@@ -1,6 +1,7 @@
 # 📖 BookStack Library Management API
 ## BookStack : 
 BookStack is a RESTful API built with Express, TypeScript, and MongoDB for managing books in a digital library. It features robust schema validation, availability checks before borrowing, custom methods to update book copies, Mongoose middleware for due date updates, and flexible filtering. Key functionalities include book CRUD operations, borrowing with quantity deduction, and insightful borrow summaries using aggregation.
+
 ## 🎯 Techonology
 1. **Express**
 2. **TypeScript**
@@ -15,61 +16,6 @@ BookStack is a RESTful API built with Express, TypeScript, and MongoDB for manag
 *   Update book copies with costome Instant method
 *   Mongoose post hook middlewar to update dueDate
 *   Filtering features
-
-* * *
-
-
-### Book Model Fields & Validation
-
-*   **title** (string) — Mandatory. The book’s title.
-*   **author** (string) — Mandatory. The book’s author.
-*   **genre** (string) — Mandatory. Must be one of: `FICTION`, `NON_FICTION`, `SCIENCE`, `HISTORY`, `BIOGRAPHY`, `FANTASY`.
-*   **isbn** (string) — Mandatory and unique. The book’s International Standard Book Number.
-*   **description** (string) — Optional. A brief summary or description of the book.
-*   **copies** (number) — Mandatory. Non-negative integer representing total copies available.
-*   **available** (boolean) — Defaults to `true`. Indicates if the book is currently available for borrowing.
-
-* * *
-
-### Borrow Model Fields & Validation
-
-*   **book** (objectId) — Mandatory. References the borrowed book’s ID.
-*   **quantity** (number) — Mandatory. Positive integer representing the number of copies borrowed.
-*   **dueDate** (date) — Mandatory. The date by which the book must be returned.
-
-* * *
-
-### Generic Error Response
-
-1. **`message`**: A brief error message explaining what went wrong.
-2. **`success`**: Set to `false` for error responses.
-3. **`error`**: The error message or error object returned by the application 
-
-```json
-{
-  "message": "Validation failed",
-  "success": false,
-  "error": {
-    "name": "ValidationError",
-    "errors": {
-      "copies": {
-        "message": "Copies must be a positive number",
-        "name": "ValidatorError",
-        "properties": {
-          "message": "Copies must be a positive number",
-          "type": "min",
-          "min": 0
-        },
-        "kind": "min",
-        "path": "copies",
-        "value": -5
-      }
-    }
-  }
-}
-```
-
-* * *
 
 
 ### Create Book
@@ -298,5 +244,35 @@ If copies become 0 then availability will be false then finally book borrow will
 }
 ```
 
+### Generic Error Response
+
+```json
+{
+  "message": "Validation failed",
+  "success": false,
+  "error": {
+    "name": "ValidationError",
+    "errors": {
+      "copies": {
+        "message": "Copies must be a positive number",
+        "name": "ValidatorError",
+        "properties": {
+          "message": "Copies must be a positive number",
+          "type": "min",
+          "min": 0
+        },
+        "kind": "min",
+        "path": "copies",
+        "value": -5
+      }
+    }
+  }
+}
+```
+💡 I face many challage to create this bookstack api however I enjoy this. Hopefully this document is clear to understand. Thank you! 💖
+
+<p align="center">
+  Made with 💖 using Express, TypeScript, and MongoDB
+</p>
 
 ###
