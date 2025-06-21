@@ -24,12 +24,9 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = error.statusCode || 500;
   let message = error.message || "Something went wrong";
 
-  if (error.name === "ValidationError") {
-    message = "Validation failed";
-  }
   res.status(statusCode).json({
     success: false,
-    message: error.message,
+    message: message,
     error,
   });
 });
