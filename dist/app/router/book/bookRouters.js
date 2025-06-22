@@ -70,6 +70,9 @@ bookRouter.get("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0,
     try {
         const bookId = req.params.bookId;
         const book = yield bookModel_1.Book.findById(bookId);
+        if (!book) {
+            throw new Error("Book not found!");
+        }
         res.status(200).json({
             success: true,
             message: "Book retrieved successfully",
@@ -84,10 +87,16 @@ bookRouter.get("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0,
 bookRouter.put("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
-        const updateInfo = req.body;
-        const updatedBook = yield bookModel_1.Book.findByIdAndUpdate(bookId, updateInfo, {
+        const { copies } = req.body;
+        if (typeof copies !== "number") {
+            throw new Error("Copies must be a number");
+        }
+        const updatedBook = yield bookModel_1.Book.findByIdAndUpdate(bookId, { $inc: { copies } }, {
             new: true,
         });
+        if (!updatedBook) {
+            throw new Error("Book not found");
+        }
         res.status(200).json({
             success: true,
             message: "Book update successfully",

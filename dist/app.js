@@ -18,19 +18,23 @@ app.get("/", (req, res) => {
 });
 //Not found
 app.use((req, res, next) => {
-    res.status(404).json({ message: "Route Not Found" });
+    res.status(404).json({ success: false, message: "Route Not Found" });
 });
 //Global error handleing
 app.use((error, req, res, next) => {
     const statusCode = error.statusCode || 500;
-    let message = error.message || "Something went wrong";
-    if (error.name === "ValidationError") {
-        message = "Validation failed";
+    let message = error.message || "Internal Server Error";
+    if (error) {
+        res.status(statusCode).json({
+            success: false,
+            message: message,
+            error,
+        });
+        return;
     }
-    res.status(statusCode).json({
+    res.status(500).json({
         success: false,
-        message: error.message,
-        error,
+        message: message,
     });
 });
 exports.default = app;

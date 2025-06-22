@@ -71,6 +71,9 @@ bookRouter.get(
       const bookId = req.params.bookId;
 
       const book = await Book.findById(bookId);
+      if (!book) {
+        throw new Error("Book not found!");
+      }
       res.status(200).json({
         success: true,
         message: "Book retrieved successfully",
@@ -88,10 +91,20 @@ bookRouter.put(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bookId = req.params.bookId;
-      const updateInfo = req.body;
-      const updatedBook = await Book.findByIdAndUpdate(bookId, updateInfo, {
-        new: true,
-      });
+      const { copies } = req.body;
+      if (typeof copies !== "number") {
+        throw new Error("Copies must be a number");
+      }
+      const updatedBook = await Book.findByIdAndUpdate(
+        bookId,
+        { $inc: { copies } },
+        {
+          new: true,
+        }
+      );
+      if (!updatedBook) {
+        throw new Error("Book not found");
+      }
 
       res.status(200).json({
         success: true,

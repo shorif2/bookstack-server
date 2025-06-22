@@ -16,7 +16,7 @@ app.get("/", (req: Request, res: Response) => {
 
 //Not found
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ message: "Route Not Found" });
+  res.status(404).json({ success: false, message: "Route Not Found" });
 });
 
 //Global error handleing
