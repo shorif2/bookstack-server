@@ -44,7 +44,7 @@ MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?ret
 💻 Development
 Run the server with hot-reloading using:
 
-```json
+```sh
 npm run dev
 
 ```
@@ -62,7 +62,7 @@ Compiled files will appear in the dist/ directory.
 🌐 Production
 To run the compiled server:
 
-```json
+```sh
 node dist/server.js
 
 ```
@@ -77,7 +77,7 @@ Compiled files will appear in the dist/ directory.
 
 #### Request:
 
-```json
+```sh
 {
   "title": "The Theory of Everything",
   "author": "Stephen Hawking",
