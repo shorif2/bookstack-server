@@ -27,7 +27,7 @@ Ensure you have the following installed:
 -MongoDB (Atlas or local)
 -Git
 📦 Installation
-```json
+```sh
 # 1. Clone the repository
 git clone https://github.com/your-username/bookstack-server.git
 cd bookstack-server
