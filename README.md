@@ -20,6 +20,57 @@ BookStack is a RESTful API built with Express, TypeScript, and MongoDB for manag
 - Mongoose post hook middlewar to update dueDate
 - Filtering features
 
+#### 🚀 Getting Started
+✅ Prerequisites
+Ensure you have the following installed:
+-Node.js (v18+ recommended)
+-MongoDB (Atlas or local)
+-Git
+📦 Installation
+```json
+# 1. Clone the repository
+git clone https://github.com/your-username/bookstack-server.git
+cd bookstack-server
+
+# 2. Install dependencies
+npm install
+```
+⚙️ Environment Variables
+Create a .env file in the root directory and add your MongoDB URI like below:
+```json
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+```
+💻 Development
+Run the server with hot-reloading using:
+
+```json
+npm run dev
+
+```
+This will use ts-node-dev to watch and restart on file changes.
+
+🛠 Build
+To compile the TypeScript code into JavaScript:
+
+```json
+npm run build
+
+```
+Compiled files will appear in the dist/ directory.
+
+🌐 Production
+To run the compiled server:
+
+```json
+node dist/server.js
+
+```
+Compiled files will appear in the dist/ directory.
+
+
+### 📁 API Endpoints
+
 ### Create Book
 
 **POST** `/api/books`
