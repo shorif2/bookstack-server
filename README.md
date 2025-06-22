@@ -37,7 +37,8 @@ npm install
 ```
 ⚙️ Environment Variables
 Create a .env file in the root directory and add your MongoDB URI like below:
-```json
+
+```sh
 MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 ```
@@ -53,7 +54,7 @@ This will use ts-node-dev to watch and restart on file changes.
 🛠 Build
 To compile the TypeScript code into JavaScript:
 
-```json
+```sh
 npm run build
 
 ```
