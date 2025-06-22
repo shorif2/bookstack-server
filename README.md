@@ -2,7 +2,7 @@
 
 ## BookStack :
 
-BookStack is a RESTful API built with Express, TypeScript, and MongoDB for managing books in a digital library. It features robust schema validation, availability checks before borrowing, custom methods to update book copies, Mongoose middleware for due date updates, and flexible filtering. Key functionalities include book CRUD operations, borrowing with quantity deduction, and insightful borrow summaries using aggregation. [Live Link](https://github.com/shorif2/bookstack-server.git)
+BookStack is a RESTful API built with Express, TypeScript, and MongoDB for managing books in a digital library. It features robust schema validation, availability checks before borrowing, custom methods to update book copies, Mongoose middleware for due date updates, and flexible filtering. Key functionalities include book CRUD operations, borrowing with quantity deduction, and insightful borrow summaries using aggregation. [Live Link](https://bookstack-server.vercel.app/)
 
 ## Technologies are used for this project:
 
