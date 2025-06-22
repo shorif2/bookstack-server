@@ -2,9 +2,9 @@
 
 ## BookStack :
 
-BookStack is a RESTful API built with Express, TypeScript, and MongoDB for managing books in a digital library. It features robust schema validation, availability checks before borrowing, custom methods to update book copies, Mongoose middleware for due date updates, and flexible filtering. Key functionalities include book CRUD operations, borrowing with quantity deduction, and insightful borrow summaries using aggregation.
+BookStack is a RESTful API built with Express, TypeScript, and MongoDB for managing books in a digital library. It features robust schema validation, availability checks before borrowing, custom methods to update book copies, Mongoose middleware for due date updates, and flexible filtering. Key functionalities include book CRUD operations, borrowing with quantity deduction, and insightful borrow summaries using aggregation. [Live Link](https://bookstack-server.vercel.app/)
 
-## 🎯 Techonology
+## Technologies are used for this project:
 
 1. **Express**
 2. **TypeScript**
@@ -20,13 +20,65 @@ BookStack is a RESTful API built with Express, TypeScript, and MongoDB for manag
 - Mongoose post hook middlewar to update dueDate
 - Filtering features
 
+#### 🚀 Getting Started
+✅ Prerequisites
+Ensure you have the following installed:
+-Node.js (v18+ recommended)
+-MongoDB (Atlas or local)
+-Git
+📦 Installation
+```sh
+# 1. Clone the repository
+git clone https://github.com/your-username/bookstack-server.git
+cd bookstack-server
+
+# 2. Install dependencies
+npm install
+```
+⚙️ Environment Variables
+Create a .env file in the root directory and add your MongoDB URI like below:
+
+```sh
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+```
+💻 Development
+Run the server with hot-reloading using:
+
+```sh
+npm run dev
+
+```
+This will use ts-node-dev to watch and restart on file changes.
+
+🛠 Build
+To compile the TypeScript code into JavaScript:
+
+```sh
+npm run build
+
+```
+Compiled files will appear in the dist/ directory.
+
+🌐 Production
+To run the compiled server:
+
+```sh
+node dist/server.js
+
+```
+Compiled files will appear in the dist/ directory.
+
+
+### 📁 API Endpoints
+
 ### Create Book
 
 **POST** `/api/books`
 
 #### Request:
 
-```json
+```sh
 {
   "title": "The Theory of Everything",
   "author": "Stephen Hawking",
