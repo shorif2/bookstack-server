@@ -85,7 +85,7 @@ bookRouter.get(
   }
 );
 
-//Update Books route
+//Update copies route
 bookRouter.put(
   "/:bookId",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -100,6 +100,45 @@ bookRouter.put(
         { $inc: { copies } },
         {
           new: true,
+        }
+      );
+      if (!updatedBook) {
+        throw new Error("Book not found");
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Book update successfully",
+        data: updatedBook,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+//Update Books route
+bookRouter.patch(
+  "/update/:bookId",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const bookId = req.params.bookId;
+      const bookInfo = req.body;
+
+      if (!bookInfo || Object.keys(bookInfo).length === 0) {
+        res.status(400).json({
+          success: false,
+          message: "No update data provided",
+        });
+      }
+      if (typeof bookInfo?.copies !== "number") {
+        throw new Error("Copies must be a number");
+      }
+      const updatedBook = await Book.findByIdAndUpdate(
+        bookId,
+        { ...bookInfo, available: true },
+        {
+          new: true,
+          runValidators: true,
         }
       );
       if (!updatedBook) {

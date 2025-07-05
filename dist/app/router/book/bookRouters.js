@@ -83,7 +83,7 @@ bookRouter.get("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0,
         next(error);
     }
 }));
-//Update Books route
+//Update copies route
 bookRouter.put("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
@@ -93,6 +93,37 @@ bookRouter.put("/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0,
         }
         const updatedBook = yield bookModel_1.Book.findByIdAndUpdate(bookId, { $inc: { copies } }, {
             new: true,
+        });
+        if (!updatedBook) {
+            throw new Error("Book not found");
+        }
+        res.status(200).json({
+            success: true,
+            message: "Book update successfully",
+            data: updatedBook,
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+}));
+//Update Books route
+bookRouter.patch("/update/:bookId", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const bookId = req.params.bookId;
+        const bookInfo = req.body;
+        if (!bookInfo || Object.keys(bookInfo).length === 0) {
+            res.status(400).json({
+                success: false,
+                message: "No update data provided",
+            });
+        }
+        if (typeof (bookInfo === null || bookInfo === void 0 ? void 0 : bookInfo.copies) !== "number") {
+            throw new Error("Copies must be a number");
+        }
+        const updatedBook = yield bookModel_1.Book.findByIdAndUpdate(bookId, Object.assign(Object.assign({}, bookInfo), { available: true }), {
+            new: true,
+            runValidators: true,
         });
         if (!updatedBook) {
             throw new Error("Book not found");

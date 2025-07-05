@@ -2,9 +2,12 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import bookRouter from "./app/router/book/bookRouters";
 import borrowRoute from "./app/router/borrow/borrowRoutes";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 const app: Application = express();
 
+//allow request from all website
+app.use(cors());
 app.use(express.json());
 app.use("/api/books", bookRouter);
 app.use("/api/borrow", borrowRoute);

@@ -50,4 +50,5 @@ const bookSchema = new Schema<Ibook>(
 bookSchema.methods.updateAvailability = function (this: Ibook): void {
   this.available = this.copies > 0;
 };
+
 export const Book: Model<Ibook> = model<Ibook>("Book", bookSchema);
